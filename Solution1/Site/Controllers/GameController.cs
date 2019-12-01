@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Site.Controllers
@@ -11,6 +12,12 @@ namespace Site.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [Route("battle")]
+        public JsonResult Battle([FromBody] Game game)
+        {
+            return Json(game.Player1);
         }
     }
 }

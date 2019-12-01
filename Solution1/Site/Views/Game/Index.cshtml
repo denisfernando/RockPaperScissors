@@ -4,50 +4,71 @@
     Layout = "~/Views/shared/_layout.cshtml";
 }
 <link rel="stylesheet" href="~/css/rps.css" />
+
+<h1>Rock Paper Scissors Battle</h1>
+
+<div class="row">
+    <div class="col-md-6 float-left ">
+        <h4 style="text-align:center;">WrongNumberOfPlayersError</h4>
+        <p style="text-align:center;" id="WrongNumberOfPlayersError">0</p>
+    </div>    
+    
+    <div class="col-md-6 float-right">
+        <h4 style="text-align:center;">NoSuchStrategyError</h4>
+        <p style="text-align:center;" id="NoSuchStrategyError">0</p>
+    </div>
+</div>
 <div id="principal">
 
-    <div class="row" style="padding: 20px 20px 20px 20px;">
+    <div class="row a" style="padding: 20px 20px 20px 20px;">
         <div class="col-md-5">
-            <div class="card mb-4 jogador1">
-                <div class="card-header bg-white font-weight-bold titulojogador" >
+            <div class="card mb-4 player1">
+                <div class="card-header bg-white font-weight-bold headerplayer">
                     PLAYER 1
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" id="txtnamep2" />
+                        <div class="form-group col-md-6">
+                            <label>Nome</label>
+                            <input class="inputname form-control" type="text" id="txtnamep1" />
                         </div>
-                        <div class="col-md-6">
-                            <input type="radio" name="player1" id="rrockp1" />
-                            <label for="rrockp1"><img src="~/img/rock.png" alt=""></label>
-                            <input type="radio" name="player1" id="rpaperp1" />
-                            <label for="rpaperp1"><img src="~/img/paper.png" alt=""></label>
-                            <input type="radio" name="player1" id="rscissorsp1" />
-                            <label for="rscissorsp1"><img src="~/img/scissors.png" alt=""></label>
+                        <div class="form-group col-md-6">
+                            <label>Ação</label>
+                            <input class="form-control" type="radio" name="player1" id="rrockp1" />
+                            <label class="label" for="rrockp1"><img src="~/img/rock.png" alt=""></label>
+                            <input class="" type="radio" name="player1" id="rpaperp1" />
+                            <label class="label" for="rpaperp1"><img src="~/img/paper.png" alt=""></label>
+                            <input class="" type="radio" name="player1" id="rscissorsp1" />
+                            <label class="label" for="rscissorsp1"><img src="~/img/scissors.png" alt=""></label>
+                            <input type="hidden" id="actionp1" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <h3>VS</h3>
-        <div class="col-md-5" style="float:right;">
-            <div class="card mb-4 jogador2">
-                <div class="card-header bg-white font-weight-bold titulojogador" >
+
+        <h3 style="display:flex; align-content:center; vertical-align:middle;">VS</h3>
+        <div class="col-md-5 align-right">
+            <div class="card mb-4 player2">
+                <div class="card-header bg-white font-weight-bold headerplayer">
                     PLAYER 2
                 </div>
                 <div class="card-body">
                     <div class="row">
 
-                        <div class="col-md-6 float-left">
-                            <input type="radio" name="player2" id="rrockp2" />
-                            <label for="rrockp2"><img src="~/img/rock.png" alt=""></label>
-                            <input type="radio" name="player2" id="rpaperp2" />
-                            <label for="rpaperp2"><img src="~/img/paper.png" alt=""></label>
-                            <input type="radio" name="player2" id="rscissorsp2" />
-                            <label for="rscissorsp2"><img src="~/img/scissors.png" alt=""></label>
+                        <div class="form-group col-md-6 float-left">
+                            <label>Ação</label>
+                            <input class="form-control" type="radio" name="player2" id="rrockp2" />
+                            <label class="label" for="rrockp2"><img src="~/img/rock.png" alt=""></label>
+                            <input class="" type="radio" name="player2" id="rpaperp2" />
+                            <label class="label" for="rpaperp2"><img src="~/img/paper.png" alt=""></label>
+                            <input class="" type="radio" name="player2" id="rscissorsp2" />
+                            <label class="label" for="rscissorsp2"><img src="~/img/scissors.png" alt=""></label>
+                            <input type="hidden" id="actionp2" />
                         </div>
-                        <div class="col-md-6">
-                            <input type="text" id="txtnamep2" />
+                        <div class="form-group col-md-6">
+                            <label>Nome</label>
+                            <input class="inputname form-control" type="text" id="txtnamep2" style="float:right;" />
                         </div>
                     </div>
                 </div>
@@ -57,4 +78,17 @@
 
 
 </div>
+<div class="row ml-4">
+    <div class="col-md-1"></div>
+    <div class="card mb-4 align-items-center col-md-9">
+        <div class="card-body ">
+            <button class="btn btn-success" id="btnBattle">BATTLE</button>
+            <a role="button" href="~/Home/Index" class="btn btn-danger"> Back</a>
 
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/scripts/game/new-game.js"></script>
+}
