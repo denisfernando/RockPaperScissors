@@ -62,7 +62,12 @@ namespace ApiCommunication
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                name: "default",
+                template: "{controller=[home]}/{action=[index]}/{id?}");
+            });
         }
     }
 }

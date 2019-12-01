@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/shared/_layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/rps.css" />
+<div id="principal">
+
+    <div class="row" style="padding: 20px 20px 20px 20px;">
+        <div class="col-md-5">
+            <div class="card mb-4 jogador1">
+                <div class="card-header bg-white font-weight-bold titulojogador" >
+                    PLAYER 1
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" id="txtnamep2" />
+                        </div>
+                        <div class="col-md-6">
+                            <input type="radio" name="player1" id="rrockp1" />
+                            <label for="rrockp1"><img src="~/img/rock.png" alt=""></label>
+                            <input type="radio" name="player1" id="rpaperp1" />
+                            <label for="rpaperp1"><img src="~/img/paper.png" alt=""></label>
+                            <input type="radio" name="player1" id="rscissorsp1" />
+                            <label for="rscissorsp1"><img src="~/img/scissors.png" alt=""></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>VS</h3>
+        <div class="col-md-5" style="float:right;">
+            <div class="card mb-4 jogador2">
+                <div class="card-header bg-white font-weight-bold titulojogador" >
+                    PLAYER 2
+                </div>
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-md-6 float-left">
+                            <input type="radio" name="player2" id="rrockp2" />
+                            <label for="rrockp2"><img src="~/img/rock.png" alt=""></label>
+                            <input type="radio" name="player2" id="rpaperp2" />
+                            <label for="rpaperp2"><img src="~/img/paper.png" alt=""></label>
+                            <input type="radio" name="player2" id="rscissorsp2" />
+                            <label for="rscissorsp2"><img src="~/img/scissors.png" alt=""></label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" id="txtnamep2" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

@@ -1,0 +1,31 @@
+﻿input[type="radio"] {
+    visibility: hidden;
+}
+
+label {
+    display: block;
+    border: 4px solid #666;
+    width: 60px;
+    float: left;
+}
+
+input[type="radio"]:checked + label {
+    border-color: #ccf;
+}
+
+img {
+    height: 50px;
+}
+
+
+.jogador1{
+    background-color:#74b9ff;
+}
+
+.jogador2{
+    background-color:#ff7675;
+}
+
+.titulojogador{
+    text-align:center;
+}
