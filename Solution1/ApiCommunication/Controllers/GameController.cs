@@ -21,11 +21,10 @@ namespace ApiCommunication.Controllers
             _applicationGame = applicationGame;
         }
 
-        [HttpGet]
-        [Route("returnwinner/{json}")]
-        public string ReturnWinner(string json)
+        [HttpPost]
+        [Route("returnwinner")]
+        public string ReturnWinner([FromBody] List<PlayerDto> players)
         {
-            List<PlayerDto> players = JsonConvert.DeserializeObject<List<PlayerDto>>(json);
 
             var Winner = _applicationGame.ReturnWiner(players);
 

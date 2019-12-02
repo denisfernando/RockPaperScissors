@@ -22,11 +22,11 @@ namespace ApiCommunication.Controllers
         }
 
 
-        [HttpGet]
-        [Route("returnchampion/{json}")]
-        public string ReturnChampion(string json)
+        [HttpPost]
+        [Route("returnchampion")]
+        public string ReturnChampion([FromBody] List<PlayerDto> players)
         {
-            List<PlayerDto> players = JsonConvert.DeserializeObject<List<PlayerDto>>(json);
+          
 
             var champion = _applicationTournament.ReturnChampion(players);
 

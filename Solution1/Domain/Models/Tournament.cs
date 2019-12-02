@@ -39,6 +39,8 @@ namespace Domain.Models
                     else
                     {//Se não, completa o grupo, insere na lista e limpa o mesmo
                         group.Add(game);
+                        //Limpa o Game
+                        game = new Game();
                         this.Championship.Add(group);
                         group = new Group();
                     }
@@ -46,6 +48,8 @@ namespace Domain.Models
                 else
                 {   //adiciona ao grupo
                     group.Add(game);
+                    //Limpa o Game
+                    game = new Game();
                     //Verifica se o grupo ficou completo, se sim, é então adicionado à lista e limpo
                     if (group.CheckFull())
                     {

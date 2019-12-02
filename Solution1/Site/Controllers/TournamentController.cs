@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -30,14 +31,12 @@ namespace Site.Controllers
         public JsonResult TournamentRun([FromBody] List<Player> Players)
         {
             string json = JsonConvert.SerializeObject(Players, Formatting.Indented);
-            string action = "returnchampion/" + json;
-
-            //string url = "https://api.postmon.com.br/v1/cep/19360000";
-
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, BaseUrl + action);
-
-
-            HttpResponseMessage response = HttpInstance.GetHttpClientInstance().SendAsync(request).Result;
+            string action = "returnchampion/";
+            
+          
+            
+            HttpResponseMessage response = HttpInstance.GetHttpClientInstance().PostAsync(BaseUrl + action, 
+                new StringContent(JsonConvert.SerializeObject(Players),Encoding.UTF8,"application/json")).Result;
 
             string jsonRetorno = response.Content.ReadAsStringAsync().Result;
 
@@ -46,7 +45,7 @@ namespace Site.Controllers
 
             var settings = new JsonSerializerSettings();
 
-            return Json(Players[0], settings);
+            return Json(playerWin, settings);
 
 
         }
