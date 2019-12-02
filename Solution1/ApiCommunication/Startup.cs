@@ -19,9 +19,17 @@ namespace ApiCommunication
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public readonly IHostingEnvironment _env;
+        public readonly IConfiguration _config;
+        public readonly ILoggerFactory _loggerFactory;
+
+
+
+        public Startup(IHostingEnvironment env ,IConfiguration config, ILoggerFactory loggerFactory)
         {
-            Configuration = configuration;
+            _env = env ?? throw new ArgumentNullException($"IHostingEnvironment não foi injetado");
+            _config = config ?? throw new ArgumentNullException($"IConfiguration não foi injetado");
+            _loggerFactory = loggerFactory ?? throw new ArgumentNullException($"ILoggerFactory não foi injetado");
         }
 
         public IConfiguration Configuration { get; }
@@ -29,7 +37,16 @@ namespace ApiCommunication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvcCore()
+                .AddJsonFormatters()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            var logger = _loggerFactory.CreateLogger<Startup>();
+
+            if(_env.IsDevelopment())
+            {
+                logger.LogInformation("Aplicação em modo Development");
+            }
             setContainer(services);
             services.AddMvc();
         }
@@ -40,9 +57,11 @@ namespace ApiCommunication
             #region instanciando as DI
             //Applications
             services.AddScoped<IApplicationTournament, ApplicationTournament>();
+            services.AddScoped<IApplicationGame, ApplicationGame>();
 
             //Services
             services.AddScoped<IServiceTournament, ServiceTournament>();
+            services.AddScoped<IServiceGame, ServiceGame>();
 
            
             #endregion
@@ -60,14 +79,9 @@ namespace ApiCommunication
             {
                 app.UseHsts();
             }
+            app.UseMvcWithDefaultRoute();
+            //app.UseHttpsRedirection();
 
-            app.UseHttpsRedirection();
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                name: "default",
-                template: "{controller=[home]}/{action=[index]}/{id?}");
-            });
         }
     }
 }

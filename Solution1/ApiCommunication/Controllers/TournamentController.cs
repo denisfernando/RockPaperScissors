@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace ApiCommunication.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/tournament")]
     [ApiController]
     public class TournamentController : ControllerBase
     {

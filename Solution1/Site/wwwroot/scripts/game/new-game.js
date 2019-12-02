@@ -11,33 +11,6 @@ document.getElementById('btnBattle').addEventListener('click', function () {
 });
 
 
-////Definindo 
-//document.getElementById('rrockp1').addEventListener('click', function () {
-//    document.getElementById('actionp1').value = 'R';
-//});
-
-//document.getElementById('rpaperp1').addEventListener('click', function () {
-//    document.getElementById('actionp1').value = 'P';
-//});
-
-//document.getElementById('rscissorsp1').addEventListener('click', function () {
-//    document.getElementById('actionp1').value = 'S';
-//});
-
-//document.getElementById('rrockp2').addEventListener('click', function () {
-//    document.getElementById('actionp2').value = 'R';
-//});
-
-//document.getElementById('rpaperp2').addEventListener('click', function () {
-//    document.getElementById('actionp2').value = 'P';
-//});
-
-//document.getElementById('rscissorsp2').addEventListener('click', function () {
-//    document.getElementById('actionp2').value = 'S';
-//});
-
-
-
 
 
 function Battle() {
@@ -56,8 +29,7 @@ function Battle() {
     let actionp1 = rrockp1.checked ? "R" : rpaperp1.checked ? "P" : rscissorsp1.checked ? "S" : "";
     let actionp2 = rrockp2.checked ? "R" : rpaperp2.checked ? "P" : rscissorsp2.checked ? "S" : "";
 
-    toastr['success']("Player 1: " + namep1 + "<br/>Action: " + actionp1);
-    toastr['success']("Player 2: " + namep2 + "<br/>Action: " + actionp2);
+
 
     let erro = "";
 
@@ -96,34 +68,30 @@ function Battle() {
             Action: actionp2
         };
         
-        const game = {
-            Player1: Player1,
-            Player2: Player2
-        };
+        const Players = [];
+        Players.push(Player1);
+        Players.push(Player2);
 
-        fetch('battle', {
+
+        fetch('play', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(game)
+            body: JSON.stringify(Players)
         }).then(res => res.json())
             .then(res => {
 
-                if (res == -1) {
-                    toastr['error']("Esta descrição já foi cadastrada!", TITULO_TOASTR_ATENCAO);
-                    document.getElementById('btnSalvarMotivoCancelamento').disabled = false;
-                }
-                else if (res >= 1) {
-                    toastr['success'](MSG_SUCESSO, TITULO_TOASTR_SUCESSO);
-                    desabilitarTudo();
+                if (res != null) {
 
-                } else {
-                    toastr['error'](MSG_ERRO_INSERIR, TITULO_TOASTR_ATENCAO);
-                    document.getElementById('btnSalvarMotivoCancelamento').disabled = false;
-                }
+                    let WinnerMsg = res.Name + "<br/>";
+                    WinnerMsg+=  res.Action == "P" ? "PAPER" : res.Action == "R" ? "ROCK" : "SCISSOR";
+                    toastr['success'](WinnerMsg, "WINNER");
 
+                }
+                else
+                    toastr['error']("AÇÃO INVÁLIDA", 'ERRO');
             });
     }
 }

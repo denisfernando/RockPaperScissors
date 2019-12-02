@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace ApiCommunication.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/game")]
     [ApiController]
     public class GameController : ControllerBase
     {
@@ -22,7 +22,7 @@ namespace ApiCommunication.Controllers
         }
 
         [HttpGet]
-        [Route("ReturnWinner/{json}")]
+        [Route("returnwinner/{json}")]
         public string ReturnWinner(string json)
         {
             List<PlayerDto> players = JsonConvert.DeserializeObject<List<PlayerDto>>(json);
